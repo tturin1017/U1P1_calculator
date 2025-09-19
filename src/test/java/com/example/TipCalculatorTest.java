@@ -1,5 +1,8 @@
 package com.example;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.ByteArrayInputStream;
+
 import org.junit.jupiter.api.Test;
 
 public class TipCalculatorTest {
@@ -133,5 +136,56 @@ public class TipCalculatorTest {
                                 "-------------------------------\n";
         String studentOutput = calculator.calculateTip(people,percent, cost);
         assertEquals(expectedOutput,studentOutput);
+    }
+
+    @Test
+    public void testExtraCredit1(){
+        TipCalculator calculator = new TipCalculator();
+        int people = 6;
+        int percent = 25;
+        double cost = 52.27;
+        String expectedOutput = "-------------------------------\n" +
+                                "Total bill before tip: $52.27\n" +
+                                "Total percentage: 25%\n" +
+                                "Total tip: $13.07\n" +
+                                "Total Bill with tip: $65.34\n" +
+                                "Per person cost before tip: $8.71\n" +
+                                "Tip per person: $2.18\n" +
+                                "Total cost per person: $10.89\n" +
+                                "-------------------------------\n";
+        expectedOutput+="Items ordered:\n"+
+                        "Burger\nFries\n"+
+                        "-------------------------------\n";
+        String simulatedInput = "Burger\nFries\n-l\n";
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+        String result = TipCalculator.extraCredit(6,25,52.27);
+
+
+        assertEquals(result,expectedOutput);
+    }
+
+    @Test
+    public void testExtraCredit2(){
+        TipCalculator calculator = new TipCalculator();
+        int people = 12;
+        int percent = 15;
+        double cost = 566.97;
+        String expectedOutput = "-------------------------------\n" +
+                                "Total bill before tip: $566.97\n"+
+                                "Total percentage: 15%\n"+
+                                "Total tip: $85.05\n"+
+                                "Total Bill with tip: $652.02\n"+
+                                "Per person cost before tip: $47.25\n"+
+                                "Tip per person: $7.09\n"+
+                                "Total cost per person: $54.33\n"+
+                                "-------------------------------\n";
+        expectedOutput+="Items ordered:\n"+
+                        "-------------------------------\n";
+        String simulatedInput = "-l\n";
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+        String result = TipCalculator.extraCredit(12,15,566.97);
+
+
+        assertEquals(result,expectedOutput);
     }
 }
