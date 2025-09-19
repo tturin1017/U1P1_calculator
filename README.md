@@ -1,14 +1,27 @@
-# Autograding Example: Java
-This example project is written in Java, and tested with Gradle/JUnit.
 
-### The assignment
-The tests are currently failing because of an output mismatch. Fixing the `System.out.println` in the main method will make the tests green.
+# Java Gradle Testing Guide
 
-### Setup command
-N/A
+This project uses Gradle and JUnit for automated testing.
 
-### Run command
-`gradle test`
+## How to Run All Tests
 
-### Notes
-- The JDK is installed on GitHub Actions machines, so you're also able to directly invoke `javac`, `java`, or any other CLI command included in the JDK. 
+Open a terminal in the project root and run:
+
+
+./gradlew test or gradle test
+
+## How to Run a Single Test Class
+
+To run all tests in a specific class (e.g., `TipCalculatorTest`):
+
+./gradlew test --tests com.example.TipCalculatorTest
+
+
+## How to Run a Single Test Method
+To run a specific test method (e.g., `testExtraCreditSimpleItems`):
+
+```bash
+./gradlew test --tests com.example.TipCalculatorTest.testExtraCreditSimpleItems
+```
+
+Happy testing!
